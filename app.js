@@ -19,7 +19,7 @@ var w_conversation = watson.conversation({
 var workspace = process.env.WORKSPACE_ID || 'workspaceId';
 
 app.get('/webhook/', function (req, res) {
-    if (req.query['hub.verify_token'] === 'EAAIdbLFwJMkBAB4A55D5ZAZCxSHDobjilMEBkZAXPoOHZBO5ZAK0fdAc207yk67uIo3zqrvg94AiZAMfDQLhsIQIt97aQJuv5wyYrEZBAjKkaL1imNbD3lSHbHvolIPaSZAZBHiHo5b7Ez8B4JZBLYWR0a1aDT9skUAjJqZBHffVpYMPQZDZD') {
+    if (req.query['hub.verify_token'] === 'EAAXpBo8hNmABAPNgaGOIOu1CLjMZB25ZC6komfO9MypAcZBeGMN5dkhCqz5JpF7xiqWPmmaXvKBowqAiP4TufHoPiOQp2yZBJFK1OIpQInS3CjjdSlMyAFaZABodpeGYeY1rYruZCaiGr5v7ZBGyksgZAIO3WEtaELPWUZBjj1swZAtAZDZD') {
         res.send(req.query['hub.challenge']);
     }
     res.send('Erro de validação no token.');
@@ -107,7 +107,7 @@ function sendMessage(sender, text_) {
     });
 };
 
-var token = "EAAIdbLFwJMkBAB4A55D5ZAZCxSHDobjilMEBkZAXPoOHZBO5ZAK0fdAc207yk67uIo3zqrvg94AiZAMfDQLhsIQIt97aQJuv5wyYrEZBAjKkaL1imNbD3lSHbHvolIPaSZAZBHiHo5b7Ez8B4JZBLYWR0a1aDT9skUAjJqZBHffVpYMPQZDZD";
+var token = "EAAXpBo8hNmABAPNgaGOIOu1CLjMZB25ZC6komfO9MypAcZBeGMN5dkhCqz5JpF7xiqWPmmaXvKBowqAiP4TufHoPiOQp2yZBJFK1OIpQInS3CjjdSlMyAFaZABodpeGYeY1rYruZCaiGr5v7ZBGyksgZAIO3WEtaELPWUZBjj1swZAtAZDZD";
 var host = (process.env.VCAP_APP_HOST || 'localhost');
 var port = (process.env.VCAP_APP_PORT || 3000);
 app.listen(port, host);
