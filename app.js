@@ -110,7 +110,7 @@ function sendMessage(sender, text_) {
 };
 
 function sendButtonMessage(recipient, text) {
-  console.log("text")
+	
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {access_token:token},
@@ -122,12 +122,14 @@ function sendButtonMessage(recipient, text) {
           "type":"template",
           "payload":{
             "template_type":"button",
-            "text":text
+            "text":text,
+            "button":"teste"
           }
         }
       }
     }
-  }, 
+  },
+  
   function(error, response, body) {
     if (error) {
       console.log('Error sending message: ', error);
