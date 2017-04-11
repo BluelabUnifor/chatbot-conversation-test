@@ -105,34 +105,6 @@ function sendMessage(sender, text_) {
             console.log('Error: ', response.body.error);
         }
     });
-}
-
-function sendButtonMessage(recipient, text, buttons) {
-  request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: {access_token:token},
-    method: 'POST',
-    json: {
-      recipient: {id:recipient},
-      message: {
-        "attachment":{
-          "type":"template",
-          "payload":{
-            "template_type":"button",
-            "text":text,
-            "buttons": buttons
-          }
-        }
-      }
-    }
-  }, 
-  function(error, response, body) {
-    if (error) {
-      console.log('Error sending message: ', error);
-    } else if (response.body.error) {
-      console.log('Error: ', response.body.error);
-    }
-  });
 };
 
 var token = "EAAXpBo8hNmABAPNgaGOIOu1CLjMZB25ZC6komfO9MypAcZBeGMN5dkhCqz5JpF7xiqWPmmaXvKBowqAiP4TufHoPiOQp2yZBJFK1OIpQInS3CjjdSlMyAFaZABodpeGYeY1rYruZCaiGr5v7ZBGyksgZAIO3WEtaELPWUZBjj1swZAtAZDZD";
