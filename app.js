@@ -123,7 +123,7 @@ function sendButtonMessage(recipient, text) {
           "payload":{
             "template_type":"button",
             "text":text,
-            "button":[
+            "buttons":[
       			{
         			"type":"postback",
                     "title":"Bookmark Item",
