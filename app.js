@@ -125,9 +125,14 @@ function sendButtonMessage(recipient, text) {
             "text":text,
             "buttons":[
       			{
-        			"type":"postback",
-                    "title":"Bookmark Item",
-        			"payload":"DEVELOPER_DEFINED_PAYLOAD"
+        			"type":"web_url",
+        			"url":"google.com.br",
+                    "title":"Google",
+      			},
+      			{
+      				"type":"postback",
+            		"title":"Start Chatting",
+            		"payload":"USER_DEFINED_PAYLOAD"
       			}
     				]
           }
