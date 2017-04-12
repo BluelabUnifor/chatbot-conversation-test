@@ -79,11 +79,9 @@ function callWatson(payload, sender) {
         if(convResults != null && convResults.output != null){
 			var i = 0;
 			while(i < convResults.output.text.length){
-				//sendMessage(sender, convResults.output.text[i++]);
-        console.log("testetsetestsetsetestsetestestestsetsetsetstsetests " + JSON.stringify(convResults.output.button));
-
-        if(typeof convResults.output.button !== 'undefined'){
-          sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.button));
+				
+        if(typeof convResults.output.quick_replies !== 'undefined'){
+          sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.quick_replies));
         } else {
           sendMessage(sender, convResults.output.text[i++]);
         }
@@ -115,7 +113,7 @@ function sendMessage(sender, text_) {
     });
 };
 
-function sendButtonMessage(recipient, text ,button) {
+function sendButtonMessage(recipient, text ,quick_replies) {
 
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -129,7 +127,7 @@ function sendButtonMessage(recipient, text ,button) {
           "payload":{
             "template_type":"button",
             "text":text,
-            "buttons":button
+            "quick_replies":quick_replies
           }
         }
       }
