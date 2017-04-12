@@ -81,7 +81,13 @@ function callWatson(payload, sender) {
 			while(i < convResults.output.text.length){
 				//sendMessage(sender, convResults.output.text[i++]);
         console.log("testetsetestsetsetestsetestestestsetsetsetstsetests " + JSON.stringify(convResults.output.button));
-        sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.button));
+
+        if(convResults.output.button !== 'undefined'){
+          sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.button));
+        } else {
+          sendMessage(sender, convResults.output.text[i++]);
+        }
+        
 			}
 		}
 
