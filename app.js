@@ -27,9 +27,9 @@ app.get('/webhook/', function (req, res) {
 
 app.post('/webhook/', function (req, res) {
 	var text = null;
-	
+
     messaging_events = req.body.entry[0].messaging;
-	for (i = 0; i < messaging_events.length; i++) {	
+	for (i = 0; i < messaging_events.length; i++) {
         event = req.body.entry[0].messaging[i];
         sender = event.sender.id;
 
@@ -40,7 +40,7 @@ app.post('/webhook/', function (req, res) {
 		}else{
 			break;
 		}
-		
+
 		var params = {
 			input: text,
 			// context: {"conversation_id": conversation_id}
@@ -69,28 +69,27 @@ function callWatson(payload, sender) {
 	w_conversation.message(payload, function (err, convResults) {
 		 console.log(convResults);
 		contexid = convResults.context;
-		
+
         if (err) {
             return responseToRequest.send("Erro.");
         }
-		
+
 		if(convResults.context != null)
     	   conversation_id = convResults.context.conversation_id;
         if(convResults != null && convResults.output != null){
 			var i = 0;
 			while(i < convResults.output.text.length){
 				sendMessage(sender, convResults.output.text[i++]);
+        sendButtonMessage(sender,text_, convResults.output.button);
 			}
 		}
-            
+
     });
 }
 
 function sendMessage(sender, text_) {
 	text_ = text_.substring(0, 319);
 	messageData = {	text: text_ };
-	
-	sendButtonMessage(sender,text_);
 
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -109,8 +108,8 @@ function sendMessage(sender, text_) {
     });
 };
 
-function sendButtonMessage(recipient, text) {
-	
+function sendButtonMessage(recipient, text ,button) {
+
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {access_token:token},
@@ -123,24 +122,13 @@ function sendButtonMessage(recipient, text) {
           "payload":{
             "template_type":"button",
             "text":text,
-            "buttons":[
-      			{
-        			"type":"web_url",
-        			"url":"google.com.br",
-                    "title":"Google",
-      			},
-      			{
-      				"type":"postback",
-            		"title":"Start Chatting",
-            		"payload":"USER_DEFINED_PAYLOAD"
-      			}
-    				]
+            "buttons":button
           }
         }
       }
     }
   },
-  
+
   function(error, response, body) {
     if (error) {
       console.log('Error sending message: ', error);
