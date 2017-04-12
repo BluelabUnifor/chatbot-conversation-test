@@ -80,7 +80,7 @@ function callWatson(payload, sender) {
 			var i = 0;
 			while(i < convResults.output.text.length){
 				sendMessage(sender, convResults.output.text[i++]);
-        sendButtonMessage(sender, convResults.output.text[i++], convResults.output.button);
+        sendButtonMessage(sender, convResults.output.text[i++], JSON.parse(convResults.output.button));
 			}
 		}
 
