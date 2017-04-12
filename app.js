@@ -82,12 +82,12 @@ function callWatson(payload, sender) {
 				//sendMessage(sender, convResults.output.text[i++]);
         console.log("testetsetestsetsetestsetestestestsetsetsetstsetests " + JSON.stringify(convResults.output.button));
 
-        if(convResults.output.button !== 'undefined'){
+        if(typeof convResults.output.button !== 'undefined'){
           sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.button));
         } else {
           sendMessage(sender, convResults.output.text[i++]);
         }
-        
+
 			}
 		}
 
