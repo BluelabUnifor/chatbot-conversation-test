@@ -84,7 +84,7 @@ function callWatson(payload, sender) {
         if(typeof convResults.output.button !== 'undefined'){
           sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.button));
         } else {
-          sendMessage(sender, convResults.output.text[i++]);
+          sendToppicsMessage(sender);
         }
         
 
@@ -147,12 +147,13 @@ function sendButtonMessage(recipient, text ,button) {
 
 function sendToppicsMessage(recipient) {
 
+console.log(recipient)
   request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {access_token:token},
     method: 'POST',
     json: {
-      recipient: {id:recipient},
+      "recipient": {id:recipient},
      "message": {
 	"text": "Pick a color:",
 	"quick_replies": [{
