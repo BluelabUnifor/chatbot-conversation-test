@@ -81,7 +81,7 @@ function callWatson(payload, sender) {
 			while(i < convResults.output.text.length){
 
 
-        if(convResults.output.button !== 'undefined'){
+        if(typeof convResults.output.button !== 'undefined'){
           sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.button));
         } else {
           sendMessage(sender, convResults.output.text[i++]);
