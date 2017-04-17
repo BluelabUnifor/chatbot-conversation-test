@@ -79,14 +79,14 @@ function callWatson(payload, sender) {
         if(convResults != null && convResults.output != null){
 			var i = 0;
 			while(i < convResults.output.text.length){
-				//sendMessage(sender, convResults.output.text[i++]);
-        console.log("testetsetestsetsetestsetestestestsetsetsetstsetests " + JSON.stringify(convResults.output.button));
 
-        if(typeof convResults.output.button !== 'undefined'){
-          sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.button));
-        } else {
-          sendMessage(sender, convResults.output.text[i++]);
-        }
+
+			sendToppicsMessage(sender);
+//        if(typeof convResults.output.button !== 'undefined'){
+//          sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.button));
+//        } else {
+//          sendMessage(sender, convResults.output.text[i++]);
+//        }
 
 			}
 		}
@@ -133,6 +133,41 @@ function sendButtonMessage(recipient, text ,button) {
           }
         }
       }
+    }
+  },
+
+  function(error, response, body) {
+    if (error) {
+      console.log('Error sending message: ', error);
+    } else if (response.body.error) {
+      console.log('Error: ', response.body.error);
+    }
+  });
+};
+
+function sendToppicsMessage(recipient) {
+
+  request({
+    url: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {access_token:token},
+    method: 'POST',
+    json: {
+      recipient: {id:recipient},
+      message:{
+    "text":"Pick a color:",
+    "quick_replies":[
+      {
+        "content_type":"text",
+        "title":"Red",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
+      },
+      {
+        "content_type":"text",
+        "title":"Green",
+        "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
+      }
+    ]
+  }
     }
   },
 
