@@ -85,6 +85,7 @@ function callWatson(payload, sender) {
           sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.button));
         } else {
           sendToppicsMessage(sender);
+          i++;
         }
         
 
@@ -153,7 +154,7 @@ console.log(recipient)
     qs: {access_token:token},
     method: 'POST',
     json: {
-      "recipient": {id:recipient},
+      recipient: {id:recipient},
      "message": {
 	"text": "Pick a color:",
 	"quick_replies": [{
