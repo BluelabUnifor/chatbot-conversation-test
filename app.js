@@ -154,8 +154,8 @@ function sendToppicsMessage(recipient) {
     json: {
       recipient: {id:recipient},
       message:{
-    "text":"Pick a color:",
-    "quick_replies":[
+    	text:"Pick a color:",
+    	quick_replies:[
       {
         "content_type":"text",
         "title":"Red",
