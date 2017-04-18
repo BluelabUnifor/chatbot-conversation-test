@@ -84,9 +84,9 @@ function callWatson(payload, sender) {
         if(typeof convResults.output.button !== 'undefined'){
           sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.button));
         } else {
-          sendMessage(sender, convResults.output.text[i++]);
-//          sendToppicsMessage(sender);
-//          i++;
+//          sendMessage(sender, convResults.output.text[i++]);
+          sendToppicsMessage(sender);
+          i++;
         }
         
 
@@ -156,9 +156,9 @@ console.log(recipient)
     method: 'POST',
     json: {
       recipient: {id:recipient},
-     "message": {
-	"text": "Pick a color:",
-	"quick_replies": [{
+     message: {
+		"text": "Pick a color:",
+		"quick_replies": [{
 			"content_type": "text",
 			"title": "Red",
 			"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
@@ -167,7 +167,10 @@ console.log(recipient)
 			"content_type": "text",
 			"title": "Green",
 			"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
-		}
+		},
+		{
+        "content_type":"location",
+     	}
 	]
 }
     }
