@@ -84,8 +84,9 @@ function callWatson(payload, sender) {
         if(typeof convResults.output.button !== 'undefined'){
           sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.button));
         } else {
-          sendToppicsMessage(sender);
-          i++;
+          sendMessage(sender, convResults.output.text[i++]);
+//          sendToppicsMessage(sender);
+//          i++;
         }
         
 
