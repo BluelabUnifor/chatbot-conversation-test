@@ -48,7 +48,7 @@ app.post('/webhook/', function (req, res) {
 		}
 
 		var payload = {
-			workspace_id: "d44cbbe7-b5c3-40ab-bd8b-823426db75a5"
+			workspace_id: "22318423-6194-487c-b5b6-f7f673b32175"
 		};
 
 		if (params) {
@@ -83,7 +83,9 @@ function callWatson(payload, sender) {
 
         if(typeof convResults.output.button !== 'undefined'){
           sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.button));
-        } else {
+        }else if(typeof convResults.output.quick_replie !== 'undefined') {
+        	sendToppicsMessage(sender, JSON.stringify(convResults.output.quick_replie));
+        }else {
 //          sendMessage(sender, convResults.output.text[i++]);
           sendToppicsMessage(sender);
           i++;
@@ -147,7 +149,7 @@ function sendButtonMessage(recipient, text ,button) {
   });
 };
 
-function sendToppicsMessage(recipient) {
+function sendToppicsMessage(recipient, quick_replie) {
 
 console.log(recipient)
   request({
@@ -156,25 +158,10 @@ console.log(recipient)
     method: 'POST',
     json: {
       recipient: {id:recipient},
-      topics{
      	message: {
 			"text": "Pick a color:",
-			"quick_replies": [{
-				"content_type": "text",
-				"title": "Red",
-				"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_RED"
-			},
-			{
-				"content_type": "text",
-				"title": "Green",
-				"payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_GREEN"
-			},
-			{
-        	"content_type":"location",
-     			}
-			]
+			"quick_replies": quick_replie
 		}
-	}
     }
   },
 
