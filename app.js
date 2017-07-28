@@ -48,7 +48,7 @@ app.post('/webhook/', function (req, res) {
 		}
 
 		var payload = {
-			workspace_id: "22318423-6194-487c-b5b6-f7f673b32175"
+			workspace_id: "d44cbbe7-b5c3-40ab-bd8b-823426db75a5"
 		};
 
 		if (params) {
@@ -85,10 +85,11 @@ function callWatson(payload, sender) {
           sendButtonMessage(sender, convResults.output.text[i++], JSON.stringify(convResults.output.button));
         }else if(typeof convResults.output.quick_replie !== 'undefined') {
         	sendToppicsMessage(sender, JSON.stringify(convResults.output.quick_replie));
+        	i++;
         }else {
-//          sendMessage(sender, convResults.output.text[i++]);
-          sendToppicsMessage(sender);
-          i++;
+          sendMessage(sender, convResults.output.text[i++]);
+//          sendToppicsMessage(sender);
+//          i++;
         }
         
 
